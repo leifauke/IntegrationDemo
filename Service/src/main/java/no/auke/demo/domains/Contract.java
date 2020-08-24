@@ -14,40 +14,53 @@ public class Contract implements Serializable {
   
     private static final long serialVersionUID = 1L;
   
-    @XmlAttribute(name = "id")
-    private int id;
-  
-    @XmlAttribute(name="uri")
-    private String uri;
-  
-    @XmlElement(name = "firstName")
-    private String firstName;
+    @XmlAttribute(name = "custid")
+    private int custid;
+    
+    @XmlElement(name = "name")
+    private String name;
   
     @XmlElement(name = "lastName")
     private String lastName;
-  
-    public int getId() {
-        return id;
+    
+    @XmlAttribute(name = "contractid")
+    private int contractid;    
+    
+    @XmlAttribute(name = "type")
+    private String type;       
+
+    @XmlAttribute(name = "status")
+    private String status;       
+    
+    public int getCustId() {
+        return custid;
     }
-    public void setId(int id) {
-        this.id = id;
+    public void setCustId(int id) {
+        this.custid = id;
     }
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
-    public String getLastName() {
-        return lastName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-    public String getUri() {
-        return uri;
-    }
-    public void setUri(String uri) {
-        this.uri = uri;
-    }
+    public int getContractid() {
+		return contractid;
+	}
+    public void setContractid(int contractid) {
+		this.contractid = contractid;
+	}
+    public String getType() {
+		return type;
+	}
+    public void setType(String type) {
+		this.type = type;
+	}
+    public String getStatus() {
+		return status;
+	}
+    public void setStatus(String status) {
+		this.status = status;
+	}
+
 }
