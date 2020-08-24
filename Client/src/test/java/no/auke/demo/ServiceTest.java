@@ -1,4 +1,4 @@
-package no.auke.servicecase;
+package no.auke.demo;
 
 import static org.junit.Assert.*;
 

@@ -14,8 +14,6 @@ public class IncuranseService {
 	
 		String resultString = "";
 		
-		
-		
 		if(resultString.contains("1#")) {
 			// customer dont exists
 			return new Result(new Contract(),"customer dont exists");
