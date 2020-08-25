@@ -18,8 +18,8 @@ public class ServiceTest {
 		ServiceReponse resp = service.createContract(contract);
 		
 		assertNull(resp.getErrorMsg());
-		assertNotNull(resp.getRetObject());
-		assertTrue(((Contract)resp.getRetObject()).getContractid()>0);
+		assertNotNull(resp.getRetContract());
+		assertTrue(((Contract)resp.getRetContract()).getContractid()>0);
 	
 	}
 

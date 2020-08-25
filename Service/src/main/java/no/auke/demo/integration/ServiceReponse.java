@@ -6,12 +6,12 @@ public class ServiceReponse {
 	
 	private int error=0;
 	private String errorMsg;
-	private Object retObject;
+	private Contract retContract;
 	
 	public ServiceReponse() {}
 
-	public ServiceReponse(Contract retobject) {
-		this.setRetObject(retobject);
+	public ServiceReponse(Contract retContract) {
+		this.setRetContract(retContract);
 	}
 	
 	public ServiceReponse(int error,  String errorMsg) {
@@ -35,12 +35,12 @@ public class ServiceReponse {
 		this.error = error;
 	}
 
-	public Object getRetObject() {
-		return retObject;
+	public Contract getRetContract() {
+		return retContract;
 	}
 
-	public void setRetObject(Object retobject) {
-		this.retObject = retobject;
+	public void setRetContract(Contract retobject) {
+		this.retContract = retobject;
 	}
 
 	public boolean isError() {

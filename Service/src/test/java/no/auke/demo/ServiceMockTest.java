@@ -72,7 +72,7 @@ public class ServiceMockTest {
 		when(ins.createContract(any())).thenReturn(new ServiceReponse(new Contract(100,"pettersen")));
 		
 		assertEquals(false,spyservice.createContract(new Contract(100,"pettersen")).isError());
-		assertEquals("pettersen",((Contract)spyservice.createContract(new Contract(100,"pettersen")).getRetObject()).getName());
+		assertEquals("pettersen",((Contract)spyservice.createContract(new Contract(100,"pettersen")).getRetContract()).getName());
 	
 	}
 	

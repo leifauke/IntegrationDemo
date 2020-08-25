@@ -35,9 +35,9 @@ public class ClientTest {
 			if(res.isError()) {
 				fail(res.getErrorMsg());
 			} 
-			assertNotNull(res.getRetObject());		
+			assertNotNull(res.getRetContract());		
 			
-			Contract ret_contract = (Contract)res.getRetObject();			
+			Contract ret_contract = res.getRetContract();			
 			assertEquals(ret_contract.getCustId(),contract.getCustId());
 			assertTrue(ret_contract.getContractid()>0);
 			
