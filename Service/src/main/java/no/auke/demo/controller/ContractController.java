@@ -1,12 +1,6 @@
 package no.auke.demo.controller;
 
-import java.net.URISyntaxException;
-
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,8 +12,6 @@ import no.auke.demo.domains.Contract;
 import no.auke.demo.domains.Contracts;
 import no.auke.demo.integration.ServiceReponse;
  
-
-
 @RestController()
 @RequestMapping("/")
 public class ContractController {
@@ -28,6 +20,7 @@ public class ContractController {
 	
     @GetMapping("/contracts")
     public Contracts getAllContracts() {
+    	System.out.println("getall");
         return new Contracts(insureServ.allContracts());
     }
      
@@ -35,10 +28,10 @@ public class ContractController {
     public ResponseEntity<ServiceReponse> createContract(@RequestBody Contract contract) {
     	
     	ServiceReponse resp = insureServ.createContract(contract);
-    	if(resp.isError()) {    		
-    		return ResponseEntity.badRequest().body(resp);
+    	if(resp.isError()) {    	
+    		return new ResponseEntity<ServiceReponse>(resp, HttpStatus.BAD_REQUEST);
     	} else {
-    		return ResponseEntity.ok().body(resp);
+    		return new ResponseEntity<ServiceReponse>(resp, HttpStatus.CREATED);
     	}
 
     }
@@ -47,10 +40,10 @@ public class ContractController {
     public ResponseEntity<ServiceReponse> updateContract(@RequestBody Contract contract) {
 
     	ServiceReponse resp = insureServ.updateContract(contract);
-    	if(resp.isError()) {
-    		return ResponseEntity.badRequest().body(resp);
+    	if(resp.isError()) {    	
+    		return new ResponseEntity<ServiceReponse>(resp, HttpStatus.BAD_REQUEST);
     	} else {
-    		return ResponseEntity.ok().body(resp);
+    		return new ResponseEntity<ServiceReponse>(resp, HttpStatus.CREATED);
     	}
     }
  

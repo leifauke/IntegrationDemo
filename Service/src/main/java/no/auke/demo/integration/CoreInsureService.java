@@ -48,14 +48,15 @@ public class CoreInsureService {
 
 	public ServiceReponse createContract(Contract contract) {
 		
-        if(contracts.containsKey(contract.getContractid())) {
-            return new ServiceReponse(400,"contract exists");
+        if(contract.getContractid()>0 && contracts.containsKey(contract.getContractid())) {
+            return new ServiceReponse(1,"contract exists");
         }
         
-        //TODO more fiddling with users etc, but for now ok
-        contracts.put(contract.getContractid(), contract);
-        
-		return new ServiceReponse(contract);
+        contract.setContractid(contracts.size());
+        contracts.put(contract.getContractid(), contract);        
+
+        return new ServiceReponse(contract);
+	
 	}
 
 	public void deleteContract(Contract contract) {

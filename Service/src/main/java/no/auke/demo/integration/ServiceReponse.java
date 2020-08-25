@@ -1,28 +1,30 @@
 package no.auke.demo.integration;
 
+import no.auke.demo.domains.Contract;
+
 public class ServiceReponse {
 	
 	private int error=0;
-	private String errormsg;
-	private Object retobject;
+	private String errorMsg;
+	private Object retObject;
 	
 	public ServiceReponse() {}
 
-	public ServiceReponse(Object retobject) {
-		this.setRetobject(retobject);
+	public ServiceReponse(Contract retobject) {
+		this.setRetObject(retobject);
 	}
 	
-	public ServiceReponse(int error,  String errormsg) {
+	public ServiceReponse(int error,  String errorMsg) {
 		this.error=error;
-		this.errormsg=errormsg;
+		this.errorMsg=errorMsg;
 	}
 
-	public String getErrormsg() {
-		return errormsg;
+	public String getErrorMsg() {
+		return errorMsg;
 	}
 
-	public void setErrormsg(String errormsg) {
-		this.errormsg = errormsg;
+	public void setErrorMsg(String errormsg) {
+		this.errorMsg = errormsg;
 	}
 
 	public int getError() {
@@ -33,12 +35,12 @@ public class ServiceReponse {
 		this.error = error;
 	}
 
-	public Object getRetobject() {
-		return retobject;
+	public Object getRetObject() {
+		return retObject;
 	}
 
-	public void setRetobject(Object retobject) {
-		this.retobject = retobject;
+	public void setRetObject(Object retobject) {
+		this.retObject = retobject;
 	}
 
 	public boolean isError() {
