@@ -4,7 +4,7 @@ public class ClientMailerService {
 	public ClientMailerService(){};
 	
 	public boolean sendMessage(String name, String message) {
-		return true;
+		return false;
 		
 	}
 }

@@ -13,6 +13,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Contract implements Serializable {
   
     private static final long serialVersionUID = 1L;
+    
+    public Contract() {}
+    public Contract(int custid, String name) {
+    	this.custid=custid;
+    	this.name=name;
+    }
   
     @XmlAttribute(name = "custid")
     private int custid;

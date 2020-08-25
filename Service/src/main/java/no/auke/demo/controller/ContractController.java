@@ -2,59 +2,55 @@ package no.auke.demo.controller;
 
 import java.net.URISyntaxException;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import no.auke.demo.domains.Contract;
 import no.auke.demo.domains.Contracts;
 import no.auke.demo.integration.ServiceReponse;
  
-@XmlAccessorType(XmlAccessType.NONE)
-@XmlRootElement(name = "users")
-@Path("/contracts")
+
+
+@RestController()
+@RequestMapping("/")
 public class ContractController {
 	
 	ContractService insureServ = new ContractService();
 	
-    @GET
-    @Produces("application/json")
+    @GetMapping("/contracts")
     public Contracts getAllContracts() {
         return new Contracts(insureServ.allContracts());
     }
      
-    @POST
-    @Consumes("application/json")
-    public Response createContract(Contract contract) throws URISyntaxException {
+    @PostMapping("/createContract")
+    public ResponseEntity<ServiceReponse> createContract(@RequestBody Contract contract) {
     	
     	ServiceReponse resp = insureServ.createContract(contract);
-    	if(resp.isError()) {
-    		return Response.status(resp.getError()).entity(resp.getErrormsg()).build();
+    	if(resp.isError()) {    		
+    		return ResponseEntity.badRequest().body(resp);
     	} else {
-    		return Response.status(201).build();
+    		return ResponseEntity.ok().body(resp);
     	}
 
     }
   
-    @PUT
-    @Path("/{id}")
-    @Consumes("application/json")
-    @Produces("application/json")
-    public Response updateContract(@PathParam("id") int id, Contract contract) throws URISyntaxException {
+    @PostMapping("/updateContract")
+    public ResponseEntity<ServiceReponse> updateContract(@RequestBody Contract contract) {
 
     	ServiceReponse resp = insureServ.updateContract(contract);
     	if(resp.isError()) {
-    		return Response.status(resp.getError()).entity(resp.getErrormsg()).build();
+    		return ResponseEntity.badRequest().body(resp);
     	} else {
-    		return Response.status(201).entity(resp.getRetobject()).build();
+    		return ResponseEntity.ok().body(resp);
     	}
     }
  

@@ -26,8 +26,7 @@ public class CoreInsureService {
             contract.setCustId(i);
             contract.setName("Leif " + i);
             contract.setContractid(contracts.size());
-            contracts.put(contract.getContractid(), contract);
-    		
+            contracts.put(contract.getContractid(), contract);    		
     	}
          
     }

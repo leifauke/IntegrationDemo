@@ -9,32 +9,39 @@ import no.auke.demo.integration.ServiceReponse;
 
 public class ContractService {	
 	
-	CoreInsureService insure = new CoreInsureService();
-	ClientMailerService messageSender = new ClientMailerService();
+	private CoreInsureService coreSystem = new CoreInsureService();
+	private ClientMailerService messageSender = new ClientMailerService();
 
+	public CoreInsureService getCoreSystem() {
+		return coreSystem;
+	}
+	public ClientMailerService getMessageSender() {
+		return messageSender;
+	}
+		
 	public ContractService() {} 	
 	public List<Contract> allContracts() {
-		return insure.allContracts();
+		return getCoreSystem().allContracts();
 	}
 	
 	public ServiceReponse createContract(Contract contract) {
 		
         if(contract == null) {
             return new ServiceReponse(400,"No contract in request");
-        } else if(contract.getName() == null || contract.getName() == null) {
+        } else if(contract.getCustId() == 0 || contract.getName() == null) {
 			return new ServiceReponse(400,"Please provide all mandatory inputs");
-        } else if(!insure.userExists(contract.getCustId(),contract.getName())) {
+        } else if(!getCoreSystem().userExists(contract.getCustId(),contract.getName())) {
 			return new ServiceReponse(400,"Customer not existing");			
 		};
 
-		ServiceReponse resp = insure.createContract(contract);
+		ServiceReponse resp = getCoreSystem().createContract(contract);
 
 		if(!resp.isError()) {
-			if(messageSender.sendMessage(contract.getName(), "ny kontrat er oppretttet")) {
+			if(getMessageSender().sendMessage(contract.getName(), "ny kontrakt er opprettet")) {
 				return resp;				
 			} else {
 				// delete contract
-				insure.deleteContract(contract);
+				getCoreSystem().deleteContract(contract);
 				new ServiceReponse(400,"Message service down, contract could not be created");
 			}
 		} 
@@ -44,6 +51,6 @@ public class ContractService {
 	public ServiceReponse updateContract(Contract contract) {
 		// TODO Auto-generated method stub
 		return null;
-	}	
+	}
 
 }
