@@ -2,19 +2,19 @@ package no.auke.demo.integration;
 
 import no.auke.demo.domains.Contract;
 
-public class ServiceReponse {
+public class ServiceResponse {
 	
 	private int error=0;
 	private String errorMsg;
 	private Contract retContract;
 	
-	public ServiceReponse() {}
+	public ServiceResponse() {}
 
-	public ServiceReponse(Contract retContract) {
+	public ServiceResponse(Contract retContract) {
 		this.setRetContract(retContract);
 	}
 	
-	public ServiceReponse(int error,  String errorMsg) {
+	public ServiceResponse(int error,  String errorMsg) {
 		this.error=error;
 		this.errorMsg=errorMsg;
 	}

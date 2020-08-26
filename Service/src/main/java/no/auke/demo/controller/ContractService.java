@@ -5,7 +5,7 @@ import java.util.List;
 import no.auke.demo.domains.Contract;
 import no.auke.demo.integration.ClientMailerService;
 import no.auke.demo.integration.CoreInsureService;
-import no.auke.demo.integration.ServiceReponse;
+import no.auke.demo.integration.ServiceResponse;
 
 public class ContractService {	
 	
@@ -24,17 +24,17 @@ public class ContractService {
 		return getCoreSystem().allContracts();
 	}
 	
-	public ServiceReponse createContract(Contract contract) {
+	public ServiceResponse createContract(Contract contract) {
 		
         if(contract == null) {
-            return new ServiceReponse(400,"No contract in request");
+            return new ServiceResponse(2,"No contract in request");
         } else if(contract.getCustId() == 0 || contract.getName() == null) {
-			return new ServiceReponse(400,"Please provide all mandatory inputs");
+			return new ServiceResponse(3,"Please provide all mandatory inputs");
         } else if(!getCoreSystem().userExists(contract.getCustId(),contract.getName())) {
-			return new ServiceReponse(400,"Customer not existing");			
+			return new ServiceResponse(4,"Customer not existing");			
 		};
 
-		ServiceReponse resp = getCoreSystem().createContract(contract);
+		ServiceResponse resp = getCoreSystem().createContract(contract);
 
 		if(!resp.isError()) {
 			if(getMessageSender().sendMessage(contract.getName(), "ny kontrakt er opprettet")) {
@@ -42,13 +42,13 @@ public class ContractService {
 			} else {
 				// delete contract
 				getCoreSystem().deleteContract(contract);
-				new ServiceReponse(400,"Message service down, contract could not be created");
+				new ServiceResponse(400,"Message service down, contract could not be created");
 			}
 		} 
 		return resp;
 
 	}
-	public ServiceReponse updateContract(Contract contract) {
+	public ServiceResponse updateContract(Contract contract) {
 		// TODO Auto-generated method stub
 		return null;
 	}

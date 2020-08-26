@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import no.auke.demo.controller.ContractService;
 import no.auke.demo.domains.Contract;
-import no.auke.demo.integration.ServiceReponse;
+import no.auke.demo.integration.ServiceResponse;
 
 public class ServiceTest {
 
@@ -15,7 +15,7 @@ public class ServiceTest {
 		
 		ContractService service = new ContractService();
 		Contract contract = new Contract(1,"leif");
-		ServiceReponse resp = service.createContract(contract);
+		ServiceResponse resp = service.createContract(contract);
 		
 		assertNull(resp.getErrorMsg());
 		assertNotNull(resp.getRetContract());

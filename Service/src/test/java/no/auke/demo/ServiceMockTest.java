@@ -13,7 +13,7 @@ import no.auke.demo.controller.ContractService;
 import no.auke.demo.domains.Contract;
 import no.auke.demo.integration.ClientMailerService;
 import no.auke.demo.integration.CoreInsureService;
-import no.auke.demo.integration.ServiceReponse;
+import no.auke.demo.integration.ServiceResponse;
 
 import org.junit.After;
 import org.junit.Before;
@@ -69,7 +69,7 @@ public class ServiceMockTest {
 	public void testCreateExists() {
 
 		when(ins.userExists(anyInt(), anyString())).thenReturn(true);
-		when(ins.createContract(any())).thenReturn(new ServiceReponse(new Contract(100,"pettersen")));
+		when(ins.createContract(any())).thenReturn(new ServiceResponse(new Contract(100,"pettersen")));
 		
 		assertEquals(false,spyservice.createContract(new Contract(100,"pettersen")).isError());
 		assertEquals("pettersen",((Contract)spyservice.createContract(new Contract(100,"pettersen")).getRetContract()).getName());

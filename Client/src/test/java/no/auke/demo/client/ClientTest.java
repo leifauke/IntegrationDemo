@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import no.auke.demo.domains.Contract;
 import no.auke.demo.domains.Contracts;
-import no.auke.demo.integration.ServiceReponse;
+import no.auke.demo.integration.ServiceResponse;
 
 public class ClientTest {
 
@@ -30,7 +30,7 @@ public class ClientTest {
 		Contract contract = new Contract(1,"leif");
 		try {
 			
-			ServiceReponse res = app.createContract(contract);
+			ServiceResponse res = app.createContract(contract);
 			assertNotNull(res);
 			if(res.isError()) {
 				fail(res.getErrorMsg());

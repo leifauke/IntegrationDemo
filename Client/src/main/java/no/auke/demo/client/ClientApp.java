@@ -5,7 +5,7 @@ import org.springframework.web.client.RestTemplate;
 
 import no.auke.demo.domains.Contract;
 import no.auke.demo.domains.Contracts;
-import no.auke.demo.integration.ServiceReponse;
+import no.auke.demo.integration.ServiceResponse;
 
 
 public class ClientApp {
@@ -18,8 +18,8 @@ public class ClientApp {
     	return restTemplate.getForObject(REST_URI + "/contracts", Contracts.class);
     }
 
-    public ServiceReponse createContract(Contract contract) {
-    	return restTemplate.postForObject(REST_URI + "/createContract", contract, ServiceReponse.class);
+    public ServiceResponse createContract(Contract contract) {
+    	return restTemplate.postForObject(REST_URI + "/createContract", contract, ServiceResponse.class);
     }
 
 }

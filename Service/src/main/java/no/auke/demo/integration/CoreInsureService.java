@@ -46,16 +46,16 @@ public class CoreInsureService {
 		return false;
 	}
 
-	public ServiceReponse createContract(Contract contract) {
+	public ServiceResponse createContract(Contract contract) {
 		
         if(contract.getContractid()>0 && contracts.containsKey(contract.getContractid())) {
-            return new ServiceReponse(1,"contract exists");
+            return new ServiceResponse(1,"contract exists");
         }
         
         contract.setContractid(contracts.size());
         contracts.put(contract.getContractid(), contract);        
 
-        return new ServiceReponse(contract);
+        return new ServiceResponse(contract);
 	
 	}
 
