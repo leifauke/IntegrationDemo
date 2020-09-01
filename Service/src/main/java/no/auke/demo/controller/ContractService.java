@@ -42,7 +42,7 @@ public class ContractService {
 			} else {
 				// delete contract
 				getCoreSystem().deleteContract(contract);
-				new ServiceResponse(400,"Message service down, contract could not be created");
+				new ServiceResponse(5,"Message service down, contract could not be created");
 			}
 		} 
 		return resp;
