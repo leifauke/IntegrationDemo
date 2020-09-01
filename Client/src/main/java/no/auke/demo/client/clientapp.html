@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<script>
+
+	class contract {
+		
+	    int custid;
+	    String name;
+	    int contractid;    
+	    String type;       
+	    String status; 
+	
+	} 
+	
+	
+	function create() {
+		
+		var updcontact = new contract();
+		
+		updcontact.custid = '21212';
+		updacontract.name='leif';
+		
+		$.ajax({
+		                url: 'http://localhost:8080/createContract")',
+		                type: 'post',
+		                async: false,
+		                data: {
+		                	c: updcontact,
+		                },
+		                success: function (resp) {
+		                	if(resp.error>0) {
+		                		alert(resp.errorMsg);
+		                	} else {
+			                	var contr = rsep.retContract;
+		                	}
+		                },
+		                error: function (error) {
+		                	alert(error);
+		                }
+		            });
+	}
+	
+</script>
+
+</head>
+<body>
+
+	<button id="xx" onclick()="create()">check update</button>
+
+</body>
+</html>
